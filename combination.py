@@ -21,14 +21,14 @@ args = parser.parse_args()
 searchResults = api.GetSearch(term=args.twitter_user, include_entities=True)
 
 #write results to file from list one at a time
-([f.write(s.full_text) for s in searchResults])
+([f.write(s.text) for s in searchResults])
 
 f.close()
 
 def print_result(annotations):
     score = annotations.document_sentiment.score
     magnitude = annotations.document_sentiment.magnitude
-    
+
     # function can be changed later to just return overall score
 
     print('Overall Sentiment: score of {} with magnitude of {}'.format(score, magnitude))
