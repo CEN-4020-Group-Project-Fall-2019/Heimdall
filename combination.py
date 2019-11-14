@@ -13,24 +13,24 @@ api = twitter.Api(consumer_key= 'Z4HlCdEhEJk8SlLHzsZDx9fxw', consumer_secret='xL
 #open file for result output
 f = open('test.txt', 'w')
 
+parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+parser.add_argument('twitter_user', help='The subject you\'d like to analyze.')
+args = parser.parse_args()
+
 #search twitter for keyword (term)
-searchResults = api.GetSearch(term='elon musk', include_entities=True)
+searchResults = api.GetSearch(term=args.twitter_user, include_entities=True)
 
 #write results to file from list one at a time
 ([f.write(s.full_text) for s in searchResults])
 
+f.close()
 
 def print_result(annotations):
     score = annotations.document_sentiment.score
     magnitude = annotations.document_sentiment.magnitude
+    
+    # function can be changed later to just return overall score
 
-    # checks sentiment of each tweet
-
-    # for index, sentence in enumerate(annotations.sentences):
-    #     sentence_sentiment = sentence.sentiment.score
-    #     print('Sentence {} has a sentiment score of {}'.format(index, sentence_sentiment))
-
-    # can be changed later to just return overall score
     print('Overall Sentiment: score of {} with magnitude of {}'.format(score, magnitude))
     return 0
 
@@ -50,7 +50,5 @@ def analyze(filename):
 if __name__ == '__main__':
     analyze('test.txt')
 
-
 #close results file and exit script
-f.close()
 exit()
