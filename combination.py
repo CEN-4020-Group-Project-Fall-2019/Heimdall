@@ -1,11 +1,14 @@
 # import api
 import twitter
-
+import time
 import argparse
 
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
+
+seconds = 2
+times = 10
 
 # login to api with security keys
 api = twitter.Api(consumer_key= 'Z4HlCdEhEJk8SlLHzsZDx9fxw', consumer_secret='xLM61gbcSy3InKE7QCVfhZHDstYaPBJNdMBTBC9cfl11BgM27X' , access_token_key='977249287-f4r7WLtpa15LaxsXNOsNk7fT8pGc0NHchC5vzPl1', access_token_secret='aAMDaG7OcdqbebajEYSXDcTAbTimlLnV9InRdUpkFqP0U')
@@ -19,6 +22,9 @@ args = parser.parse_args()
 
 #search twitter for keyword (term)
 searchResults = api.GetSearch(term=args.twitter_user, include_entities=True)
+for i in range(times):
+    time.sleep(seconds)
+    searchResults += api.GetSearch(term=args.twitter_user, include_entities=True)
 
 #write results to file from list one at a time
 ([f.write(s.text) for s in searchResults])
