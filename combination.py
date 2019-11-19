@@ -22,9 +22,6 @@ args = parser.parse_args()
 
 #search twitter for keyword (term)
 searchResults = api.GetSearch(term=args.twitter_user, include_entities=True)
-for i in range(times):
-    time.sleep(seconds)
-    searchResults += api.GetSearch(term=args.twitter_user, include_entities=True)
 
 #write results to file from list one at a time
 ([f.write(s.text) for s in searchResults])
