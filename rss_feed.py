@@ -1,10 +1,9 @@
 import feedparser
 import argparse
+
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-
-import argparse
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument('stock_name', help='The subject you\'d like to analyze.')
