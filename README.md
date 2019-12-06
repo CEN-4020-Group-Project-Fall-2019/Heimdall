@@ -10,4 +10,6 @@ python3 -m pip install google.cloud.storage
 python3 -m pip install google.cloud.language
 python3 -m pip install twitter
 python3 -m pip install python-twitter
+python3 -m pip install argparse
+python3 -m pip install feedparser
 ```
